@@ -37,43 +37,69 @@
             font-weight: bold;
             color: #0284c7;
         }
-        nav ul {
-            display: flex;
+        /* Hamburger Button */
+        .menu-toggle {
+            font-size: 24px;
+            cursor: pointer;
+            background: #f1f5f9;
+            padding: 5px 12px;
+            border-radius: 6px;
+            color: #0f172a;
+            user-select: none;
+        }
+        /* Dropdown Nav Links */
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            background-color: #ffffff;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            border-top: 1px solid #e2e8f0;
             list-style: none;
-            gap: 20px;
-            align-items: center;
+            padding: 10px 0;
         }
-        nav a {
+        .nav-links.active {
+            display: flex;
+        }
+        .nav-links li {
+            text-align: left;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .nav-links li:last-child {
+            border-bottom: none;
+        }
+        .nav-links a {
+            display: block;
+            padding: 12px 20px;
             text-decoration: none;
-            color: #475569;
+            color: #334155;
             font-weight: 500;
-            transition: 0.3s;
+            font-size: 15px;
         }
-        nav a:hover {
+        .nav-links a:hover {
+            background-color: #f8fafc;
             color: #0284c7;
         }
-        .login-btn {
-            background-color: #0284c7;
-            color: white !important;
-            padding: 8px 18px;
-            border-radius: 6px;
-        }
-        .login-btn:hover {
-            background-color: #0369a1;
+        .login-link {
+            color: #0284c7 !important;
+            font-weight: bold !important;
         }
 
         /* Container */
         .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 0 20px;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 15px;
         }
 
         /* Sections */
         .section {
             background: #ffffff;
-            padding: 30px;
-            margin-bottom: 25px;
+            padding: 25px;
+            margin-bottom: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.04);
             border: 1px solid #e2e8f0;
@@ -81,45 +107,52 @@
         h2 {
             color: #0f172a;
             border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-            font-size: 22px;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+        p {
+            font-size: 14px;
+            color: #334155;
         }
         .badge {
             background: #e0f2fe;
             color: #0369a1;
             padding: 4px 10px;
             border-radius: 4px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
         }
 
         /* Form */
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             font-weight: 600;
             color: #334155;
+            font-size: 14px;
         }
         input, select, textarea {
             width: 100%;
-            padding: 10px;
+            padding: 9px;
             border: 1px solid #cbd5e1;
             border-radius: 6px;
             outline: none;
+            font-size: 14px;
         }
         button {
             background-color: #0284c7;
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 10px 18px;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
+            width: 100%;
         }
         button:hover {
             background-color: #0369a1;
@@ -130,8 +163,7 @@
             text-align: center;
             padding: 20px;
             color: #64748b;
-            font-size: 14px;
-            margin-top: 40px;
+            font-size: 13px;
         }
     </style>
 </head>
@@ -141,15 +173,17 @@
     <header>
         <div class="nav-container">
             <div class="logo">Petros Beyene</div>
-            <nav>
-                <ul>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#aim">AIM</a></li>
-                    <li><a href="#certificates">Certificates</a></li>
-                    <li><a href="#registration">Registration</a></li>
-                    <li><a href="#login" class="login-btn">Login</a></li>
-                </ul>
-            </nav>
+            <!-- Hamburger Toggle Button -->
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+            
+            <!-- Menu Links -->
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about" onclick="toggleMenu()">About Us</a></li>
+                <li><a href="#aim" onclick="toggleMenu()">AIM & Vision</a></li>
+                <li><a href="#certificates" onclick="toggleMenu()">Certificates</a></li>
+                <li><a href="#registration" onclick="toggleMenu()">Registration</a></li>
+                <li><a href="#login" class="login-link" onclick="toggleMenu()">Login</a></li>
+            </ul>
         </div>
     </header>
 
@@ -159,7 +193,7 @@
         <div id="about" class="section">
             <h2>About Us</h2>
             <p>Welcome! I am <strong>Petros Beyene</strong>, a 1st-year Doctor of Medicine student at Dilla University and a passionate Python & Telegram Bot Developer.</p>
-            <p style="margin-top: 10px;">I specialize in building digital automation tools, Python algorithms, and integration solutions that bridge technology and healthcare.</p>
+            <p style="margin-top: 8px;">I specialize in building digital automation tools, Python algorithms, and integration solutions that bridge technology and healthcare.</p>
         </div>
 
         <!-- AIM Section -->
@@ -168,7 +202,7 @@
             <p><strong>Mission:</strong> To innovate and automate daily workflow using software development and AI tools while pursuing medical excellence.</p>
             <br>
             <p><strong>Core Focus Areas:</strong></p>
-            <ul style="margin-left: 20px; margin-top: 5px;">
+            <ul style="margin-left: 20px; margin-top: 5px; font-size: 14px;">
                 <li>Telegram Bot Automation & Mini-Apps</li>
                 <li>Software Engineering & Algorithms</li>
                 <li>Digital Medical Systems & Education</li>
@@ -181,11 +215,11 @@
             <ul style="list-style: none;">
                 <li style="margin-bottom: 12px;">
                     <span class="badge">Verified</span> <strong>AddisCoder Certificate</strong>
-                    <p style="font-size: 14px; color: #64748b;">Issued in collaboration with the Ministry of Education (Algorithms & Python Programming).</p>
+                    <p style="font-size: 13px; color: #64748b;">Issued in collaboration with the Ministry of Education (Algorithms & Python Programming).</p>
                 </li>
                 <li>
                     <span class="badge">Verified</span> <strong>ESSGI Certificate</strong>
-                    <p style="font-size: 14px; color: #64748b;">Official distinct certificate from the Ethiopian Space Science and Geospatial Institute.</p>
+                    <p style="font-size: 13px; color: #64748b;">Official distinct certificate from the Ethiopian Space Science and Geospatial Institute.</p>
                 </li>
             </ul>
         </div>
@@ -235,6 +269,14 @@
     <footer>
         <p>&copy; 2026 Petros Beyene. All Rights Reserved.</p>
     </footer>
+
+    <!-- JavaScript to toggle menu -->
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
 
 </body>
 </html>
