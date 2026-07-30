@@ -10,13 +10,14 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
+            scroll-behavior: smooth;
         }
         body {
             background-color: #f8fafc;
             color: #1e293b;
             line-height: 1.6;
         }
-        /* Navigation Bar */
+        /* Navigation Bar - Sticky Header */
         header {
             background-color: #ffffff;
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
@@ -31,6 +32,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 20px;
+            position: relative;
         }
         .logo {
             font-size: 20px;
@@ -60,6 +62,7 @@
             border-top: 1px solid #e2e8f0;
             list-style: none;
             padding: 10px 0;
+            z-index: 1001;
         }
         .nav-links.active {
             display: flex;
@@ -227,18 +230,18 @@
         <!-- Admission / Registration Section -->
         <div id="registration" class="section">
             <h2>Admission & Training Registration</h2>
-            <form onsubmit="event.preventDefault(); alert('Registration submitted successfully!');">
+            <form action="https://formspree.io/f/mvzeyjyg" method="POST">
                 <div class="form-group">
                     <label>Full Name</label>
-                    <input type="text" placeholder="Enter your full name" required>
+                    <input type="text" name="name" placeholder="Enter your full name" required>
                 </div>
                 <div class="form-group">
                     <label>Email / Telegram Username</label>
-                    <input type="text" placeholder="@username or email" required>
+                    <input type="text" name="contact" placeholder="@username or email" required>
                 </div>
                 <div class="form-group">
                     <label>Select Training / Service</label>
-                    <select>
+                    <select name="service">
                         <option>Telegram Bot Development Training</option>
                         <option>Python Programming Basics</option>
                         <option>Custom Bot Automation Request</option>
@@ -248,17 +251,17 @@
             </form>
         </div>
 
-        <!-- Login Section (Placeholder) -->
+        <!-- Login Section -->
         <div id="login" class="section">
             <h2>User Login</h2>
             <form onsubmit="event.preventDefault(); alert('Login System coming soon!');">
                 <div class="form-group">
                     <label>Username / Email</label>
-                    <input type="text" placeholder="Enter username">
+                    <input type="text" placeholder="Enter username" required>
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" placeholder="Enter password">
+                    <input type="password" placeholder="Enter password" required>
                 </div>
                 <button type="submit" style="background-color: #0f172a;">Login</button>
             </form>
