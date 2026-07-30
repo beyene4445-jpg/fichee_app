@@ -109,6 +109,54 @@
             display: block;
         }
 
+        /* Home / Hero Section Styling */
+        .hero-content {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 4px solid #0284c7;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .hero-title {
+            font-size: 24px;
+            color: #0f172a;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .hero-subtitle {
+            font-size: 15px;
+            color: #0284c7;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .hero-quote {
+            font-style: italic;
+            color: #475569;
+            font-size: 14px;
+            max-width: 600px;
+            margin: 0 auto 20px auto;
+        }
+        .cta-btn {
+            display: inline-block;
+            background-color: #0284c7;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .cta-btn:hover {
+            background-color: #0369a1;
+        }
+
         h2 {
             color: #0f172a;
             border-bottom: 2px solid #e2e8f0;
@@ -147,7 +195,7 @@
             outline: none;
             font-size: 14px;
         }
-        button {
+        button[type="submit"] {
             background-color: #0284c7;
             color: white;
             border: none;
@@ -158,7 +206,7 @@
             font-weight: bold;
             width: 100%;
         }
-        button:hover {
+        button[type="submit"]:hover {
             background-color: #0369a1;
         }
 
@@ -174,10 +222,11 @@
 
     <header>
         <div class="nav-container">
-            <div class="logo" onclick="showSection('about')">Petros Beyene</div>
+            <div class="logo" onclick="showSection('home')">Petros Beyene</div>
             <div class="menu-toggle" onclick="toggleMenu()">☰</div>
             
             <ul class="nav-links" id="navLinks">
+                <li><a onclick="showSection('home')">Home</a></li>
                 <li><a onclick="showSection('about')">About Us</a></li>
                 <li><a onclick="showSection('aim')">AIM & Vision</a></li>
                 <li><a onclick="showSection('certificates')">Certificates</a></li>
@@ -189,7 +238,17 @@
 
     <div class="container">
 
-        <div id="about" class="section active-section">
+        <div id="home" class="section active-section">
+            <div class="hero-content">
+                <img src="profile.jpg" alt="Petros Beyene" class="profile-img">
+                <div class="hero-title">Petros Beyene</div>
+                <div class="hero-subtitle">Future Medical Doctor and Tech Enthusiast</div>
+                <p class="hero-quote">"At the intersection of medicine, technology, and faith. Driven by discipline, grounded in Christ."</p>
+                <a class="cta-btn" onclick="showSection('registration')">Join My Training / Registration</a>
+            </div>
+        </div>
+
+        <div id="about" class="section">
             <h2>About Us</h2>
             <p>Welcome! I am <strong>Petros Beyene</strong>, a 1st-year Doctor of Medicine student at Dilla University and a passionate Python & Telegram Bot Developer.</p>
             <p style="margin-top: 8px;">I specialize in building digital automation tools, Python algorithms, and integration solutions that bridge technology and healthcare.</p>
