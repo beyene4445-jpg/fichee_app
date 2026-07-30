@@ -10,14 +10,12 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            scroll-behavior: smooth;
         }
         body {
             background-color: #f8fafc;
             color: #1e293b;
             line-height: 1.6;
         }
-        /* Navigation Bar - Sticky Header */
         header {
             background-color: #ffffff;
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
@@ -38,8 +36,8 @@
             font-size: 20px;
             font-weight: bold;
             color: #0284c7;
+            cursor: pointer;
         }
-        /* Hamburger Button */
         .menu-toggle {
             font-size: 24px;
             cursor: pointer;
@@ -49,7 +47,6 @@
             color: #0f172a;
             user-select: none;
         }
-        /* Dropdown Nav Links */
         .nav-links {
             display: none;
             flex-direction: column;
@@ -81,6 +78,7 @@
             color: #334155;
             font-weight: 500;
             font-size: 15px;
+            cursor: pointer;
         }
         .nav-links a:hover {
             background-color: #f8fafc;
@@ -91,15 +89,15 @@
             font-weight: bold !important;
         }
 
-        /* Container */
         .container {
             max-width: 900px;
             margin: 20px auto;
             padding: 0 15px;
         }
 
-        /* Sections */
+        /* Section visibility handling */
         .section {
+            display: none;
             background: #ffffff;
             padding: 25px;
             margin-bottom: 20px;
@@ -107,6 +105,10 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.04);
             border: 1px solid #e2e8f0;
         }
+        .section.active-section {
+            display: block;
+        }
+
         h2 {
             color: #0f172a;
             border-bottom: 2px solid #e2e8f0;
@@ -127,7 +129,6 @@
             font-weight: 600;
         }
 
-        /* Form */
         .form-group {
             margin-bottom: 12px;
         }
@@ -161,7 +162,6 @@
             background-color: #0369a1;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 20px;
@@ -172,34 +172,29 @@
 </head>
 <body>
 
-    <!-- Header Navigation -->
     <header>
         <div class="nav-container">
-            <div class="logo">Petros Beyene</div>
-            <!-- Hamburger Toggle Button -->
+            <div class="logo" onclick="showSection('about')">Petros Beyene</div>
             <div class="menu-toggle" onclick="toggleMenu()">☰</div>
             
-            <!-- Menu Links -->
             <ul class="nav-links" id="navLinks">
-                <li><a href="#about" onclick="toggleMenu()">About Us</a></li>
-                <li><a href="#aim" onclick="toggleMenu()">AIM & Vision</a></li>
-                <li><a href="#certificates" onclick="toggleMenu()">Certificates</a></li>
-                <li><a href="#registration" onclick="toggleMenu()">Registration</a></li>
-                <li><a href="#login" class="login-link" onclick="toggleMenu()">Login</a></li>
+                <li><a onclick="showSection('about')">About Us</a></li>
+                <li><a onclick="showSection('aim')">AIM & Vision</a></li>
+                <li><a onclick="showSection('certificates')">Certificates</a></li>
+                <li><a onclick="showSection('registration')">Registration</a></li>
+                <li><a onclick="showSection('login')" class="login-link">Login</a></li>
             </ul>
         </div>
     </header>
 
     <div class="container">
 
-        <!-- About Us Section -->
-        <div id="about" class="section">
+        <div id="about" class="section active-section">
             <h2>About Us</h2>
             <p>Welcome! I am <strong>Petros Beyene</strong>, a 1st-year Doctor of Medicine student at Dilla University and a passionate Python & Telegram Bot Developer.</p>
             <p style="margin-top: 8px;">I specialize in building digital automation tools, Python algorithms, and integration solutions that bridge technology and healthcare.</p>
         </div>
 
-        <!-- AIM Section -->
         <div id="aim" class="section">
             <h2>Our AIM & Vision</h2>
             <p><strong>Mission:</strong> To innovate and automate daily workflow using software development and AI tools while pursuing medical excellence.</p>
@@ -212,7 +207,6 @@
             </ul>
         </div>
 
-        <!-- Certificates Section -->
         <div id="certificates" class="section">
             <h2>My Certificates & Credentials</h2>
             <ul style="list-style: none;">
@@ -227,7 +221,6 @@
             </ul>
         </div>
 
-        <!-- Admission / Registration Section -->
         <div id="registration" class="section">
             <h2>Admission & Training Registration</h2>
             <form action="https://formspree.io/f/mvzeyjyg" method="POST">
@@ -251,7 +244,6 @@
             </form>
         </div>
 
-        <!-- Login Section -->
         <div id="login" class="section">
             <h2>User Login</h2>
             <form onsubmit="event.preventDefault(); alert('Login System coming soon!');">
@@ -273,11 +265,25 @@
         <p>&copy; 2026 Petros Beyene. All Rights Reserved.</p>
     </footer>
 
-    <!-- JavaScript to toggle menu -->
     <script>
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
+        }
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(sec => sec.classList.remove('active-section'));
+
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active-section');
+            }
+
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 
